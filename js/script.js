@@ -2,6 +2,14 @@
 
 const jugada = document.querySelectorAll(".boton-jugada"); //recoge todos los botones
 
+//Variables para ir sumando los puntos de usuario o maquina
+let contadorUsuario = 0;
+let contadorMaquina = 0;
+
+//Con esto identificamos mas fácilmente los id de contador usuario y contador o
+const puntosUsuario = document.getElementById("contador-usuario");
+const puntosMaquina = document.getElementById("contador-ordenador");
+
 //función para hacer el aleatorio del ordenador
 function jugadaAleatoria() {
     const opciones = ["piedra", "papel", "tijera"]; ///se definen las opciones
@@ -25,7 +33,7 @@ jugada.forEach(function(boton){
 
         //empezamos las comparaciones para saber quien ganó
         if (jugadaUsuario === jugadaOrdenador) {
-            mensajeResultado += " Has empatado" 
+            mensajeResultado += " Has empatado"; 
 
         }
 
@@ -34,14 +42,18 @@ jugada.forEach(function(boton){
                 jugadaUsuario == "tijera" & jugadaOrdenador == "papel"||
                 jugadaUsuario == "papel" & jugadaOrdenador == "piedra"){
 
-                    mensajeResultado +=  " Has GANADO :)"
+                    mensajeResultado +=  " Has GANADO :)";
+                    contadorUsuario++;//Aumenta el contador del usuario
         }
 
         else {
-            mensajeResultado +=  " Has PERDIDO :("
+            mensajeResultado +=  " Has PERDIDO :(";
+            contadorMaquina++;//Aumenta el contador de la maquina
         }
 
-        resultadoTexto.innerText = mensajeResultado
+        resultadoTexto.innerText = mensajeResultado;
+        puntosUsuario.innerHTML = `Tus puntos: ${contadorUsuario}`;//Actualiza los contadores en el HTML de contador-usuario
+        puntosMaquina.innerHTML = `Puntos de la máquina: ${contadorMaquina}`;//Actualiza los contadores en el HTML de contador-maquina
     })
-})
+});
 
