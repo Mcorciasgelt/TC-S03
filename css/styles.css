@@ -2,15 +2,79 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 .boton-jugada {
   background-color: #3498db;
   color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-#resultados {
+  padding: 20px 20px;
   font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  text-decoration: solid;
+  width: 100px;  
+}
+
+
+#resultados {
+  font-size: 25px;
   margin: 20px 0;
+  border: #3498db 2px solid;
+  width: 500px;
+  height: 200px;
+  text-align: center;
+  align-content: center;
+}
+
+@keyframes botones {
+  0% {
+    scale: 1;
+  }
+  
+  100% {
+    scale: 1.1;
+  }
+}
+
+.boton-jugada:hover {
+  background-color: green;
+  animation: botones 0.5s linear forwards
+} 
+
+.contadores {
+  border: #3498db 2px solid;
+  width: 500px;
+  
+}
+
+p {
+  font-size: 25px;
+}
+
+.estilo-ganador {
+  background-color: rgba(0, 128, 0, 0.503);
+  color: white;
+}
+
+.estilo-perdedor {
+  background-color: rgba(221, 12, 12, 0.589);
+  color: white;
+}
+
+.estilo-empate {
+  background-color: rgba(58, 60, 58, 0.692);
+  color: rgb(0, 0, 0);
+}
+
+.ganando-contadores {
+  background-color: rgba(0, 128, 0, 0.503);
+  color: white;
+}
+
+.perdiendo-contadores {
+  background-color: rgba(221, 12, 12, 0.589);
+  color: white;
 }

@@ -27,31 +27,58 @@ jugada.forEach(function(boton){
 
         const jugadaUsuario = event.target.getAttribute("data-jugada"); //aquí el event.target identifica el botón que se priosonó (me lia explicarlo, lo entendí al hacerlo)
         const jugadaOrdenador = jugadaAleatoria(); //hacemos una llamada a la función para obtener un aleatorio
-        const resultadoTexto = document.getElementById("resultados")
+        const resultadoTexto = document.getElementById("jugadaActual");
+        const resultadoGanador = document.getElementById("ganador")
+        const zonaResultados = document.getElementById("resultados")
+        const zonaContadores = document.querySelector(".contadores")
 
-        let mensajeResultado = `Tu jugada: ${jugadaUsuario} | Jugada del ordenador: ${jugadaOrdenador} ->` //encontré esto que me moló porque en esta variable los resultados de cada uno y luego más abajo con los += agrega el caso en concreto y luego más abajo se muestra en el DIV que nos piden el resultado final
+        let mensajeResultado = `Tu jugada: ${jugadaUsuario} 
+         Jugada del ordenador: ${jugadaOrdenador}` //encontré esto que me moló porque en esta variable los resultados de cada uno y luego más abajo con los += agrega el caso en concreto y luego más abajo se muestra en el DIV que nos piden el resultado final
+
+        let mensajeGanador = ""
+
+        //borramos el estilo que tenga para que se muestre el correspondiente al condicional
+        zonaResultados.classList.remove("estilo-empate", "estilo-ganador", "estilo-perdedor")
+        zonaContadores.classList.remove("estilo-empate", "estilo-ganador", "estilo-perdedor")
 
         //empezamos las comparaciones para saber quien ganó
         if (jugadaUsuario === jugadaOrdenador) {
-            mensajeResultado += " Has empatado"; 
+            mensajeGanador += " Has empatado";
+            zonaResultados.classList.add("estilo-empate") 
 
         }
 
         else if (
-                jugadaUsuario == "piedra" & jugadaOrdenador == "tijera" ||
-                jugadaUsuario == "tijera" & jugadaOrdenador == "papel"||
-                jugadaUsuario == "papel" & jugadaOrdenador == "piedra"){
+                jugadaUsuario == "piedra" && jugadaOrdenador == "tijera" ||
+                jugadaUsuario == "tijera" && jugadaOrdenador == "papel"||
+                jugadaUsuario == "papel" && jugadaOrdenador == "piedra"){
 
-                    mensajeResultado +=  " Has GANADO :)";
+                    mensajeGanador +=  " Has GANADO :)";
                     contadorUsuario++;//Aumenta el contador del usuario
+                    zonaResultados.classList.add("estilo-ganador")
         }
 
         else {
-            mensajeResultado +=  " Has PERDIDO :(";
+            mensajeGanador +=  " Has PERDIDO :(";
             contadorMaquina++;//Aumenta el contador de la maquina
+            zonaResultados.classList.add("estilo-perdedor")
+        }
+
+        //condicional para pintar el div donde están los contadores
+        if (contadorUsuario > contadorMaquina) {
+            zonaContadores.classList.add("estilo-ganador")
+        }
+
+        else if (contadorMaquina > contadorUsuario) {
+            zonaContadores.classList.add("estilo-perdedor")
+        }
+
+        else {
+            zonaContadores.classList.add("estilo-empate")
         }
 
         resultadoTexto.innerText = mensajeResultado;
+        resultadoGanador.textContent = mensajeGanador;
         puntosUsuario.innerHTML = `Tus puntos: ${contadorUsuario}`;//Actualiza los contadores en el HTML de contador-usuario
         puntosMaquina.innerHTML = `Puntos de la máquina: ${contadorMaquina}`;//Actualiza los contadores en el HTML de contador-maquina
     })
