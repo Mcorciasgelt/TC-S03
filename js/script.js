@@ -43,7 +43,7 @@ jugada.forEach(function(boton){
 
         //empezamos las comparaciones para saber quien ganó
         if (jugadaUsuario === jugadaOrdenador) {
-            mensajeGanador += " Has empatado";
+            mensajeGanador += " Has empatado 😐";
             zonaResultados.classList.add("estilo-empate") 
 
         }
@@ -53,13 +53,13 @@ jugada.forEach(function(boton){
                 jugadaUsuario == "tijera" && jugadaOrdenador == "papel"||
                 jugadaUsuario == "papel" && jugadaOrdenador == "piedra"){
 
-                    mensajeGanador +=  " Has GANADO :)";
+                    mensajeGanador +=  " Has GANADO 😄";
                     contadorUsuario++;//Aumenta el contador del usuario
                     zonaResultados.classList.add("estilo-ganador")
         }
 
         else {
-            mensajeGanador +=  " Has PERDIDO :(";
+            mensajeGanador +=  " Has PERDIDO ☹️";
             contadorMaquina++;//Aumenta el contador de la maquina
             zonaResultados.classList.add("estilo-perdedor")
         }
